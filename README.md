@@ -10,7 +10,8 @@ Question
 
 To run
 1. Run your mongod server by typing `mongod --dbpath ~/db `.  
-2. Take two terminals. In one cd into the main folder. In one cd into the frontend folder.  
+2. Take two terminals. In one cd into the main folder. In one cd into the frontend folder.
+3. In the first terminal run npm install. In the second terminal do bower install to install all the dependencies.   
 3. Run the nodemon app.js /node app.js.
 4. In second run live-server.
 5. Create your own account. And Start using the system
