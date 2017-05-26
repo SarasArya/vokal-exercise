@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Vokal Exercise</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="bower_components/AngularJS-Toaster/toaster.min.css">
+</head>
+
+<body ng-app="vokalApp">
+<toaster-container toaster-options="{'time-out': 3000,  'animation-class': 'toast-top-center'}"></toaster-container>
+    <div ui-view>
+        <!--The whole of the app is rendered here-->
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="bower_components/socket.io-client/dist/socket.io.js"></script> -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controller/loginController.js"></script>
+    <script src="controller/locationController.js"></script>
+    <script src="services/api.js"></script>
+</body>
+
+</html>
