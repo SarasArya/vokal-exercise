@@ -1,0 +1,44 @@
+<style type="text/css">
+.map {
+    top: 0;
+    left: 0;
+    height: 90%;
+    width: 100%;
+}
+
+#places {
+    top: 10%;
+    left: 40%;
+    position: absolute;
+}
+</style>
+<div>
+    <uib-tabset active="active" justified="true">
+        <uib-tab index="0" heading="Search and Save">
+            <div id="map" class="map">
+            </div>
+            <div id="places">
+                <input type="text" class="form-control" id="placeSearch" placeholder="Search for a restaurant" />
+                <input type="submit" class="btn btn-primary form-control" name="" value="Save the restaurant name" ng-click="save()">
+            </div>
+        </uib-tab>
+        <uib-tab heading="Saved Results">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Search Name</th>
+                        <th>Restaurant In the area</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="location in locations">
+                        <td> {{$index +1}} </td>
+                        <td> {{location.searchName}} </td>
+                        <td> {{location.placeNames.join(",")}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </uib-tab>
+    </uib-tabset>
+</div>

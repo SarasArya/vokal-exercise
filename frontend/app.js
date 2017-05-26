@@ -3,8 +3,8 @@ const app = angular.module('vokalApp', ['ui.router', 'toaster', 'ui.bootstrap', 
 app.config(($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) => {
 
     /*CORS*/
-    // $httpProvider.defaults.withCredentials = true;
-    // $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.useXDomain = true;
 
     $stateProvider
         .state('login', {
@@ -13,11 +13,17 @@ app.config(($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider
             controller: 'LoginCntrl'
         })
 
-    .state('chats', {
-        url: '/main',
+    .state('location', {
+        url: '/location',
         templateUrl: 'views/location.html',
         controller: 'LocationCntrl'
     });
 
     $urlRouterProvider.otherwise('/login');
+});
+
+app.factory('Config', () => {
+    return {
+        apiurl: "http://localhost:3000"
+    };
 });

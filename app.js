@@ -5,18 +5,38 @@ const express = require('express'),
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.text({
-    type: "text/plain"
-}));
+Promise = bluebird;
+// Promise.config({
+//     warnings: false
+// });
+mongoose.Promise = require('bluebird');
+if (process.env.NODE_ENV === 'development') {
+    app.set('db', 'mongodb://localhost:27017/vokal');
+} else if (process.env.NODE_ENV === 'production') {
+    app.set('db', 'mongodb://localhost:27017/vokal'); // Production mode
+}
+
+require('./initialize.js')(app);
+let checkauth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        console.log("Doesn't authenticate");
+        res.status(401);
+        res.set('Content-Type', 'application/json');
+        res.end(JSON.stringify({
+            'success': false
+        }));
+    }
+};
+
+
+mongoose.connect(app.get('db'));
+console.log('db connected');
 
 app.all('*', function(req, res, next) {
     //let allowedOrigins = ['http://localhost:8080', 'http://127.0.0.1:8080'];
     let origin = req.headers.origin;
-
     // if (allowedOrigins.indexOf(origin) > -1) {
     //     res.setHeader('Access-Control-Allow-Origin', origin);
     // }
@@ -28,13 +48,17 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.send("Hello World");
+    res.end();
+});
 //Models
-Auth = require('./models/authSchema.js');
+User = require('./models/userSchema.js');
 Location = require('./models/locationSchema.js');
 
 //routes
-require('./routes/auth.js');
-require('./routes/location.js');
+require('./routes/auth.js')(app, checkauth);
+require('./routes/location.js')(app, checkauth);
 
 app.listen(3000, () => {
     console.log("Node server is listening at port 3000");

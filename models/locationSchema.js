@@ -17,9 +17,17 @@ const coordSchema = Schema({
 });
 const locationSchema = Schema({
     userId: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        required: true
     },
-    location: [coordSchema]
+    searchName: {
+        type: String,
+        required: true
+    },
+    locations: {
+        type: [coordSchema],
+        default: []
+    }
 }, {
     collection: 'location'
 });

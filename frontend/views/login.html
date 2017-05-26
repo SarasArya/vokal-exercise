@@ -10,7 +10,10 @@
                 <h3>Login</h3>
                 <form name="loginForm">
 
-                    <input type="email" name="" ng-model="user.email" class="form-control" required placeholder="emailId">
+                    <input type="email" name="" ng-model="user.username" class="form-control" required placeholder="emailId">
+                    <br>
+                    <br>
+                    <input type="password" name="" ng-model="user.password" class="form-control" required placeholder="password">
                     <br>
                     <br>
                     <input type="submit" name="" ng-click="login()" ng-disabled="!loginForm.$valid" class="btn btn-primary">
@@ -18,14 +21,17 @@
             </div>
             <div class="col-md-6" style="border-left:1px solid black">
                 <h3>Create Account</h3>
-                <form name="create">
-                    <input type="text" name="" class="form-control" ng-model="user.name" placeholder="username" required>
+                <form name="createForm">
+                    <input type="email" name="" class="form-control" ng-model="user.username" placeholder="emailID must be unique" required>
                     <br>
                     <br>
-                    <input type="email" name="" class="form-control" ng-model="user.email" placeholder="emailID must be unique">
+                    <input type="password" name="" class="form-control" ng-model="user.password" placeholder="Password" required>
                     <br>
                     <br>
-                    <input type="submit" name="" ng-click="submit()" ng-disabled="!create.$valid" class="btn btn-primary">
+                    <input type="text" name="" class="form-control" ng-model="user.name" placeholder="Name" required>
+                    <br>
+                    <br>
+                    <input type="submit" name="" ng-click="create()" ng-disabled="!createForm.$valid" class="btn btn-primary">
                 </form>
             </div>
         </div>

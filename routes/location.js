@@ -1,9 +1,10 @@
-module.exports = (app) => {
-    app.get('/results', (req, res) => {
-
+locationCntrl = require('../controller/locationController.js');
+module.exports = (app, checkauth) => {
+    app.get('/location/results', checkauth, (req, res) => {
+        locationCntrl.fetch(req, res);
     });
 
-    app.post('/results', (req, res) => {
-
+    app.post('/location/results', checkauth, (req, res) => {
+        locationCntrl.save(req, res);
     });
 };

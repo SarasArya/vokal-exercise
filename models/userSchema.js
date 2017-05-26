@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-const authSchema = Schema({
+const userSchema = Schema({
     emailId: {
         type: String,
         required: true
@@ -15,7 +15,7 @@ const authSchema = Schema({
         required: true
     }
 },{
-	collection : 'auth'
+	collection : 'user'
 });
 
-module.exports = mongoose.model('auth', authSchema);
+module.exports = mongoose.model('user', userSchema);

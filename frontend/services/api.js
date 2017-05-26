@@ -1,12 +1,12 @@
 (() => {
+    const dependencyInject = ['$http', '$q', 'Config'];
     angular.module('vokalApp').service('Auth', Auth);
 
-    const dependencyInject = ['$http', '$q', 'Config'];
     Auth.$inject = dependencyInject;
 
     function Auth($http, $q, Config) {
         this.create = data => {
-            return $http.post(`${Config.apiurl}/create`, data)
+            return $http.post(`${Config.apiurl}/signup`, data)
                 .then(response => {
                     return $q.resolve(response.data);
                 }, error => {
@@ -15,7 +15,7 @@
         };
 
         this.login = data => {
-            return $http.post(`${Config.apiurl}/create`, data)
+            return $http.post(`${Config.apiurl}/login`, data)
                 .then(response => {
                     return $q.resolve(response.data);
                 }, error => {
@@ -27,10 +27,10 @@
     angular.module('vokalApp').service('Location', Location);
 
     Location.$inject = dependencyInject;
-
+    
     function Location($http, $q, Config) {
         this.save = data => {
-            return $http.post(`${Config.apiurl}/location/save`, data)
+            return $http.post(`${Config.apiurl}/location/results`, data)
                 .then(response => {
                     return $q.resolve(response.data);
                 }, error => {
@@ -39,7 +39,7 @@
         };
 
         this.fetch = data => {
-            return $http.post(`${Config.apiurl}/location/fetch`, data)
+            return $http.get(`${Config.apiurl}/location/results`, data)
                 .then(response => {
                     return $q.resolve(response.data);
                 }, error => {
