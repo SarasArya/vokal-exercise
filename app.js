@@ -9,11 +9,15 @@ Promise = bluebird;
 // Promise.config({
 //     warnings: false
 // });
+
 mongoose.Promise = require('bluebird');
 if (process.env.NODE_ENV === 'development') {
     app.set('db', 'mongodb://localhost:27017/vokal');
 } else if (process.env.NODE_ENV === 'production') {
     app.set('db', 'mongodb://localhost:27017/vokal'); // Production mode
+}else{
+    console.warn("You don't have a development environment setup");
+    app.set('db', 'mongodb://localhost:27017/vokal');   
 }
 
 require('./initialize.js')(app);

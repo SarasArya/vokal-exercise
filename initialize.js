@@ -17,6 +17,12 @@ module.exports = app => {
             uri: app.get('db'),
             collection: 'mysessions'
         });
+    } else {
+        console.warn("You don't have a development environment setup");
+        sessionStore = new MongoDBStore({
+            uri: app.get('db'),
+            collection: 'mysessions'
+        });
     }
 
     let sessionOpts = {
